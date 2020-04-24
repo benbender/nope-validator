@@ -12,7 +12,7 @@ abstract class NopePrimitive<T> implements Validatable<T> {
 
   public required(message = 'This field is required') {
     const rule: Rule<T> = (entry) => {
-      if (entry === undefined || entry === null) {
+      if (entry === undefined || entry === null || String(entry).trim().length === 0) {
         return message;
       }
     };
