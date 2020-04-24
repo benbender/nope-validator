@@ -32,4 +32,18 @@ describe('#NopeDate', () => {
       expect(Nope.date().after('2019-01-01').validate('2019-01-02')).toBe(undefined);
     });
   });
+
+  describe('#date', () => {
+    it('should return notADate for an invalid date', () => {
+      expect(Nope.date().after('2019-01-01').validate('not a date')).toBe(
+        'The field is not a valid date',
+      );
+    });
+
+    it('should return a defined error message for an invalid date', () => {
+      expect(Nope.date('dateError').after('2019-01-02', 'afterError').validate('not a date')).toBe(
+        'dateError',
+      );
+    });
+  });
 });

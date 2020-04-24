@@ -58,6 +58,10 @@ describe('#NopeString', () => {
       expect(Nope.string().min(5).validate('tour')).toBe('Input is too short');
     });
 
+    it('(alias for greaterThan) should return an error message for an entry shorter than the the threshold', () => {
+      expect(Nope.string().min(5).validate(6)).toBe('Input is too short');
+    });
+
     it('(alias for greaterThan) should return an error message for an entry equal to the threshold', () => {
       expect(Nope.string().min(4).validate('tour')).toBe('Input is too short');
     });
@@ -162,6 +166,24 @@ describe('#NopeString', () => {
 
     it('should return undefined for an entry shorter than threshold', () => {
       expect(Nope.string().atMost(5, 'atMostErrorMessage').validate('tour')).toBe(undefined);
+    });
+  });
+
+  describe('#required', () => {
+    it('should return requiredMessage for undefined', () => {
+      expect(Nope.string().required('requiredMessage').validate(undefined)).toBe('requiredMessage');
+    });
+
+    it('should return requiredMessage for null', () => {
+      expect(Nope.string().required('requiredMessage').validate(null)).toBe('requiredMessage');
+    });
+
+    it('should return requiredMessage for empty string', () => {
+      expect(Nope.string().required('requiredMessage').validate('')).toBe('requiredMessage');
+    });
+
+    it('should return requiredMessage for a string full of white spaces', () => {
+      expect(Nope.string().required('requiredMessage').validate('     ')).toBe('requiredMessage');
     });
   });
 });

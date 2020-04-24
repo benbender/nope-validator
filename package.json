@@ -7,7 +7,7 @@
   "license": "MIT",
   "description": "Fast and simple JS validator",
   "scripts": {
-    "format": "prettier --write src/**/*.{ts}",
+    "format": "prettier --write src/**/*.ts",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "test": "jest --env=node --colors src/**/*.spec.ts",
     "build:es2015": "tsc --module es2015 --target es2015 --outDir lib/es2015",

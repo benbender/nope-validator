@@ -10,9 +10,13 @@ abstract class NopePrimitive<T> implements Validatable<T> {
     return this._type;
   }
 
+  protected isEmpty(entry: T | Nil) {
+    return entry === undefined || entry === null;
+  }
+
   public required(message = 'This field is required') {
     const rule: Rule<T> = (entry) => {
-      if (entry === undefined || entry === null || String(entry).trim().length === 0) {
+      if (this.isEmpty(entry)) {
         return message;
       }
     };
