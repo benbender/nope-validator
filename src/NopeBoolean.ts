@@ -2,10 +2,10 @@ import NopePrimitive from './NopePrimitive';
 import { Rule } from './types';
 
 class NopeBoolean extends NopePrimitive<boolean> {
-  protected _type: string = 'boolean';
+  protected _type = 'boolean';
 
   public true(message = 'Input must be true') {
-    const rule: Rule<boolean> = entry => {
+    const rule: Rule<boolean> = (entry) => {
       if (entry === undefined || entry === null) {
         return;
       }
@@ -19,7 +19,7 @@ class NopeBoolean extends NopePrimitive<boolean> {
   }
 
   public false(message = 'Input must be false') {
-    const rule: Rule<boolean> = entry => {
+    const rule: Rule<boolean> = (entry) => {
       if (entry === undefined || entry === null) {
         return;
       }

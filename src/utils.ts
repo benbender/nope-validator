@@ -5,7 +5,7 @@ export function resolveNopeRefsFromKeys(
   options: (string | Nil)[],
   context?: { [key: string]: any },
 ) {
-  const resolvedOptions = options.map(option => {
+  const resolvedOptions = options.map((option) => {
     if (context && option !== undefined && option !== null) {
       return context[option];
     }
@@ -17,7 +17,7 @@ export function resolveNopeRefsFromKeys(
 }
 
 export function every(arr: any[], predicate: (value: any) => boolean) {
-  return arr.filter(value => !predicate(value)).length === 0;
+  return arr.filter((value) => !predicate(value)).length === 0;
 }
 
 export function resolveNopeRef<T>(

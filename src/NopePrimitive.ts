@@ -4,14 +4,14 @@ import { resolveNopeRefsFromKeys, every, resolveNopeRef } from './utils';
 
 abstract class NopePrimitive<T> implements Validatable<T> {
   protected validationRules: Rule<T>[] = [];
-  protected _type: string = 'undefined';
+  protected _type = 'undefined';
 
   public getType() {
     return this._type;
   }
 
   public required(message = 'This field is required') {
-    const rule: Rule<T> = entry => {
+    const rule: Rule<T> = (entry) => {
       if (entry === undefined || entry === null) {
         return message;
       }
@@ -50,7 +50,7 @@ abstract class NopePrimitive<T> implements Validatable<T> {
 
   public oneOf(options: (T | NopeReference | Nil)[], message = 'Invalid option') {
     const rule: Rule<T> = (entry, context) => {
-      const resolvedOptions = options.map(option => resolveNopeRef(option, context));
+      const resolvedOptions = options.map((option) => resolveNopeRef(option, context));
 
       if (resolvedOptions.indexOf(entry) === -1) {
         return message;
@@ -62,7 +62,7 @@ abstract class NopePrimitive<T> implements Validatable<T> {
 
   public notOneOf(options: (T | NopeReference | Nil)[], message = 'Invalid Option') {
     const rule: Rule<T> = (entry, context) => {
-      const resolvedOptions = options.map(option => resolveNopeRef(option, context));
+      const resolvedOptions = options.map((option) => resolveNopeRef(option, context));
 
       if (resolvedOptions.indexOf(entry) !== -1) {
         return message;
